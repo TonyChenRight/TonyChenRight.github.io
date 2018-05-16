@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>陈俊</title>
+    <description>欢迎来到我的个人站~</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 16 May 2018 16:45:57 +0800</pubDate>
+    <lastBuildDate>Wed, 16 May 2018 16:45:57 +0800</lastBuildDate>
+    <generator>Jekyll v3.5.2</generator>
+    
+  </channel>
+</rss>
