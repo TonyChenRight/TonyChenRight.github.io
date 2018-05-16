@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 刚开通个人博客
+title: Jekyll+GitHub搭建博客平台
 date: 2018-05-16
 tag: 生活
 ---
@@ -13,11 +13,11 @@ tag: 生活
 >* 3、安装jekyll
 >* 4、下载jekyll模板
 >* 5、启动运行
-　　
+
 ### 1、首先注册github账号及相关配置
 
 　　具体可以查看 ![](/images/posts/github/github.png)
-	 地址  [https://github.com](https://github.com)
+	  地址  [https://github.com](https://github.com)
 
 ### 2、创建关联github.io的仓库
 
@@ -27,7 +27,7 @@ tag: 生活
 ### 3、安装jekyll
 
 ```
-gem install jekyll
+gem install bundler jekyll
 ```
 
 
@@ -37,7 +37,7 @@ gem install jekyll
 ### 5、启动运行
 
 ```
-jekyll server
+bundle exec jekyll serve
 ```
 
-参考资源：[潘柏信的博客](http://baixin) » [Wifi 定位原理及 iOS Wifi 列表获取](http://baixin.io/2017/01/iOS_Wifilist/)
+参考资源：[潘柏信的博客](http://baixin)

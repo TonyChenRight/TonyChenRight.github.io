@@ -5,12 +5,30 @@
     <description>欢迎来到我的个人站~</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 16 May 2018 18:52:41 +0800</pubDate>
-    <lastBuildDate>Wed, 16 May 2018 18:52:41 +0800</lastBuildDate>
+    <pubDate>Wed, 16 May 2018 22:59:20 +0800</pubDate>
+    <lastBuildDate>Wed, 16 May 2018 22:59:20 +0800</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
         <title>刚开通个人博客</title>
+        <description>&lt;p&gt;　	大家好，这是我的第一篇博客，之前一直没时间来顾忌这个，希望以后可以和大家一起好好交流&lt;/p&gt;
+
+&lt;h3 id=&quot;扬帆启程&quot;&gt;扬帆启程&lt;/h3&gt;
+&lt;p&gt;　	&lt;img src=&quot;/images/posts/startBlog/timg.jpeg&quot; alt=&quot;&quot; /&gt;
+　	&lt;img src=&quot;/images/posts/startBlog/timg2.jpeg&quot; alt=&quot;&quot; /&gt;
+　	&lt;img src=&quot;/images/posts/startBlog/timg3.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 16 May 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/05/StartBlog/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/StartBlog/</guid>
+        
+        <category>生活</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Jekyll+GitHub搭建博客平台</title>
         <description>&lt;p&gt;　	大家好，这是我的第一篇博客，今天刚利用jekyll搭建了博客平台，然后利用github.io来进行文章展示。&lt;/p&gt;
 
 &lt;h3 id=&quot;jekyll平台搭建步骤&quot;&gt;jekyll平台搭建步骤&lt;/h3&gt;
@@ -20,15 +38,14 @@
     &lt;li&gt;2、创建关联github.io的仓库&lt;/li&gt;
     &lt;li&gt;3、安装jekyll&lt;/li&gt;
     &lt;li&gt;4、下载jekyll模板&lt;/li&gt;
-    &lt;li&gt;5、启动运行
-　　
-      &lt;h3 id=&quot;1首先注册github账号及相关配置&quot;&gt;1、首先注册github账号及相关配置&lt;/h3&gt;
-    &lt;/li&gt;
+    &lt;li&gt;5、启动运行&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
+&lt;h3 id=&quot;1首先注册github账号及相关配置&quot;&gt;1、首先注册github账号及相关配置&lt;/h3&gt;
+
 &lt;p&gt;　　具体可以查看 &lt;img src=&quot;/images/posts/github/github.png&quot; alt=&quot;&quot; /&gt;
-	 地址  &lt;a href=&quot;https://github.com&quot;&gt;https://github.com&lt;/a&gt;&lt;/p&gt;
+	  地址  &lt;a href=&quot;https://github.com&quot;&gt;https://github.com&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;2创建关联githubio的仓库&quot;&gt;2、创建关联github.io的仓库&lt;/h3&gt;
 
@@ -37,7 +54,7 @@
 
 &lt;h3 id=&quot;3安装jekyll&quot;&gt;3、安装jekyll&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem install jekyll
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem install bundler jekyll
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -46,15 +63,15 @@
 
 &lt;h3 id=&quot;5启动运行&quot;&gt;5、启动运行&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll server
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle exec jekyll serve
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;参考资源：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt; » &lt;a href=&quot;http://baixin.io/2017/01/iOS_Wifilist/&quot;&gt;Wifi 定位原理及 iOS Wifi 列表获取&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考资源：&lt;a href=&quot;http://baixin&quot;&gt;潘柏信的博客&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 16 May 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2018/05/First-Page/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/First-Page/</guid>
+        <link>http://localhost:4000/2018/05/Jekyll_GitHub/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/Jekyll_GitHub/</guid>
         
         <category>生活</category>
         
