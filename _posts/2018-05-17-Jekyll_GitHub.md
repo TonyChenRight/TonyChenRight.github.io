@@ -19,12 +19,12 @@ tags: jekyll github
 
 ### 1、首先注册github账号及相关配置
 
-　　具体可以查看 ![](/images/posts/github/github.png)
+　　具体可以查看 ![](/assets/img/github/github.png)
 	  地址  [https://github.com](https://github.com)
 
 ### 2、创建关联github.io的仓库
 
-　　具体查看 ![](/images/posts/github/githubRep.png)   
+　　具体查看 ![](/assets/img/github/githubRep.png)   
 		参考 [https://pages.github.com/](https://pages.github.com/)
 
 ### 3、安装jekyll
