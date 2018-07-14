@@ -1,0 +1,1037 @@
+<p><em>Commons Lang</em> 跟java.lang这个包的作用类似，Commons Lang这一组API也是提供一些基础的、通用的操作和处理，如自动生成toString()的结果、自动实现hashCode()和equals()方法、数组操作、枚举、日期和时间的处理等等。目前这组API的版本是2.1，下载地址如下：</p>
+
+<p><a href="http://apache.justdn.org/jakarta/commons/lang/binaries/commons-lang-2.1.zip">http://apache.justdn.org/jakarta/commons/lang/binaries/commons-lang-2.1.zip</a></p>
+
+<p><a href="http://apache.justdn.org/jakarta/commons/lang/source/commons-lang-2.1-src.zip">http://apache.justdn.org/jakarta/commons/lang/source/commons-lang-2.1-src.zip</a></p>
+
+<p>其中后一个是源代码。</p>
+
+<p>这一组API的所有包名都以org.apache.commons.lang开头，共有如下8个包：</p>
+
+<blockquote>
+  <ul>
+    <li>org.apache.commons.lang</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>org.apache.commons.lang.builder</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>org.apache.commons.lang.enum</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>org.apache.commons.lang.enums</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>org.apache.commons.lang.exception</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>org.apache.commons.lang.math</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>org.apache.commons.lang.mutable</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>org.apache.commons.lang.time</li>
+  </ul>
+</blockquote>
+
+<p>其中的lang.enum已不建议使用，替代它的是紧随其后的lang.enums包。 lang包主要是一些可以高度重用的Util类；lang.builder包包含了一组用于产生每个Java类中都常使用到的toString()、hashCode()、equals()、compareTo()等等方法的构造器；lang.enums包顾名思义用于处理枚举；lang.exception包用于处理Java标准API中的exception，为1.4之前版本提供Nested Exception功能；lang.math包用于处理数字；lang.mutable用于包装值型变量；lang.time包提供处理日期和时间的功能。</p>
+
+<p>由于Commons的包和类实在很多，不可能一个一个讲了，在接下来的专题文章中我就只分别过一下lang、lang.builder、lang.math和lang.time这几个包和常见的用法，其他的我们可以在用到时临时参考一下Javadoc。位置就在安装路径的</p>
+
+<p>…\commons-lang-2.1\docs\api\index.html</p>
+
+<p>我们首先来看org.apache.commons.lang包，这个包提供了一些有用的包含static方法的Util类。除了6个Exception类和2个已经deprecated的数字类之外，commons.lang包共包含了17个实用的类：</p>
+
+<blockquote>
+  <ul>
+    <li>ArrayUtils – 用于对数组的操作，如添加、查找、删除、子数组、倒序、元素类型转换等；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>BitField – 用于操作位元，提供了一些方便而安全的方法；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>BooleanUtils – 用于操作和转换 boolean 或者 Boolean 及相应的数组；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>CharEncoding – 包含了 Java 环境支持的字符编码，提供是否支持某种编码的判断；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>CharRange – 用于设定字符范围并做相应检查；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>CharSet – 用于设定一组字符作为范围并做相应检查；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>CharSetUtils – 用于操作 CharSet ；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>CharUtils – 用于操作 char 值和 Character 对象；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>ClassUtils – 用于对 Java 类的操作，不使用反射；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>ObjectUtils – 用于操作 Java 对象，提供 null 安全的访问和其他一些功能；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>RandomStringUtils – 用于生成随机的字符串；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>SerializationUtils – 用于处理对象序列化，提供比一般 Java 序列化更高级的处理能力；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>StringEscapeUtils – 用于正确处理转义字符，产生正确的 Java 、 JavaScript 、 HTML 、 XML 和 SQL 代码；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>StringUtils – 处理 String 的核心类，提供了相当多的功能；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>SystemUtils – 在 java.lang.System 基础上提供更方便的访问，如用户路径、 Java 版本、时区、操作系统等判断；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>Validate – 提供验证的操作，有点类似 assert 断言；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>WordUtils – 用于处理单词大小写、换行等。</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>接下来我准备用两个例子来分别说明ArrayUtils和StringUtils的常见用法</li>
+  </ul>
+</blockquote>
+
+<h4 id="orgapachecommonslangarrayutils">org.apache.commons.lang.ArrayUtils</h4>
+
+<p>数组是我们经常需要使用到的一种数据结构，但是由于Java本身并没有提供很好的API支持，使得很多操作实际上做起来相当繁琐，以至于我们实际编码中甚至会不惜牺牲性能去使用Collections API，用Collection当然能够很方便的解决我们的问题，但是我们一定要以性能为代价吗？ArrayUtils帮我们解决了处理类似情况的大部分问题。来看一个例子：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">sean</span><span class="o">.</span><span class="na">study</span><span class="o">.</span><span class="na">jakarta</span><span class="o">.</span><span class="na">commons</span><span class="o">.</span><span class="na">lang</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.ArrayUtils</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayUtilsUsage</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// data setup</span>
+
+        <span class="kt">int</span> <span class="o">[]</span> <span class="n">intArray1</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">16</span> <span class="o">};</span>
+
+        <span class="kt">int</span> <span class="o">[][]</span> <span class="n">intArray2</span> <span class="o">=</span> <span class="o">{</span> <span class="o">{</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span> <span class="o">},</span> <span class="o">{</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span> <span class="o">},</span> <span class="o">{</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">8</span><span class="o">},</span> <span class="o">{</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">16</span> <span class="o">}</span> <span class="o">};</span>
+
+        <span class="n">Object</span><span class="o">[][]</span> <span class="n">notAMap</span> <span class="o">=</span> <span class="o">{</span>
+
+                <span class="o">{</span> <span class="s">"A"</span> <span class="o">,</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span> <span class="o">},</span>
+
+                <span class="o">{</span> <span class="s">"B"</span> <span class="o">,</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="mi">80</span><span class="o">)</span> <span class="o">},</span>
+
+                <span class="o">{</span> <span class="s">"C"</span> <span class="o">,</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="mi">60</span><span class="o">)</span> <span class="o">},</span>
+
+                <span class="o">{</span> <span class="s">"D"</span> <span class="o">,</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="mi">40</span><span class="o">)</span> <span class="o">},</span>
+
+                <span class="o">{</span> <span class="s">"E"</span> <span class="o">,</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span> <span class="o">}</span>
+
+        <span class="o">};</span>
+
+        <span class="c1">// printing arrays</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"intArray1: "</span> <span class="o">+</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray1</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"intArray2: "</span> <span class="o">+</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray2</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"notAMap: "</span> <span class="o">+</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">notAMap</span><span class="o">));</span>
+
+        <span class="c1">// finding items</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"intArray1 contains '8'? "</span>
+
+                <span class="o">+</span> <span class="n">ArrayUtils</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">intArray1</span><span class="o">,</span><span class="mi">8</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"intArray1 index of '8'? "</span>
+
+                <span class="o">+</span> <span class="n">ArrayUtils</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">intArray1</span><span class="o">,</span><span class="mi">8</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"intArray1 last index of '8'? "</span>
+
+                <span class="o">+</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="n">intArray1</span><span class="o">,</span> <span class="mi">8</span><span class="o">));</span>
+
+        <span class="c1">// cloning and resversing</span>
+
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">intArray3</span> <span class="o">=</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">clone</span><span class="o">(</span><span class="n">intArray1</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"intArray3: "</span> <span class="o">+</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray3</span><span class="o">));</span>
+
+        <span class="n">ArrayUtils</span><span class="o">.</span><span class="na">reverse</span><span class="o">(</span><span class="n">intArray3</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"intArray3 reversed: "</span>
+
+                <span class="o">+</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray3</span><span class="o">));</span>
+
+        <span class="c1">// primitive to Object array</span>
+
+        <span class="n">Integer</span><span class="o">[]</span> <span class="n">integerArray1</span> <span class="o">=</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toObject</span><span class="o">(</span><span class="n">intArray1</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"integerArray1: "</span>
+
+                <span class="o">+</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">integerArray1</span><span class="o">));</span>
+
+        <span class="c1">// build Map from two dimensional array</span>
+
+        <span class="n">Map</span> <span class="n">map</span> <span class="o">=</span> <span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toMap</span><span class="o">(</span><span class="n">notAMap</span><span class="o">);</span>
+
+        <span class="n">Double</span> <span class="n">res</span> <span class="o">=</span> <span class="o">(</span><span class="n">Double</span><span class="o">)</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span> <span class="s">"C"</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"get 'C' from map: "</span> <span class="o">+</span> <span class="n">res</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>以下是运行结果：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>intArray1:{2,4,8,16}
+
+intArray2:{ {1,2},{2,4},{3,8},{4,16}}
+
+notAMap:{ {A,100.0},{B,80.0},{C,60.0},{D,40.0},{E,20.0}}
+
+intArray1 contains'8'? true
+
+intArray1 index of'8'? 2
+
+intArray1 last indexof '8'? 2
+
+intArray3:{2,4,8,16}
+
+intArray3 reversed:{16,8,4,2}
+
+integerArray1:{2,4,8,16}
+
+get 'C' from map:60.0
+</code></pre>
+</div>
+
+<p>这段代码说明了我们可以如何方便的利用ArrayUtils类帮我们完成数组的打印、查找、克隆、倒序、以及值型/对象数组之间的转换等操作。如果想了解更多，请参考Javadoc。</p>
+
+<h3 id="orgapachecommonslangstringutils">org.apache.commons.lang.StringUtils</h3>
+
+<p>处理文本对Java应用来说应该算是家常便饭了，在1.4出现之前，Java自身提供的API非常有限，如String、StringTokenizer、StringBuffer，操作也比较单一。无非就是查找substring、分解、合并等等。到1.4的出现可以说Java的文字处理上了一个台阶，因为它支持regular expression了。这可是个重量级而方便的东东啊，缺点是太复杂，学习起来有一定难度。相较而言，Jakarta Commons提供的StringUtils和WordUtils至今还维持着那种简洁而强大的美，使用起来也很顺手。来看一个例子：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">sean</span><span class="o">.</span><span class="na">study</span><span class="o">.</span><span class="na">jakarta</span><span class="o">.</span><span class="na">commons</span><span class="o">.</span><span class="na">lang</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.StringUtils</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringUtilsAndWordUtilsUsage</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// data setup</span>
+
+        <span class="n">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">""</span> <span class="o">;</span>
+
+        <span class="n">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">""</span> <span class="o">;</span>
+
+        <span class="n">String</span> <span class="n">str3</span> <span class="o">=</span> <span class="s">"\t"</span> <span class="o">;</span>
+
+        <span class="n">String</span> <span class="n">str4</span> <span class="o">=</span> <span class="kc">null</span> <span class="o">;</span>
+
+        <span class="n">String</span> <span class="n">str5</span> <span class="o">=</span> <span class="s">"123"</span> <span class="o">;</span>
+
+        <span class="n">String</span> <span class="n">str6</span> <span class="o">=</span> <span class="s">"ABCDEFG"</span> <span class="o">;</span>
+
+        <span class="n">String</span> <span class="n">str7</span> <span class="o">=</span> <span class="s">"Itfeels good to use JakartaCommons.\r\n"</span> <span class="o">;</span>
+
+        <span class="c1">// check for empty strings</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"=============================="</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is str1 blank? "</span> <span class="o">+</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">str1</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is str2 blank? "</span> <span class="o">+</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">str2</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is str3 blank? "</span> <span class="o">+</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">str3</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is str4 blank? "</span> <span class="o">+</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">str4</span><span class="o">));</span>
+
+        <span class="c1">// check for numerics</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"=============================="</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is str5 numeric? "</span> <span class="o">+</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isNumeric</span><span class="o">(</span><span class="n">str5</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is str6 numeric? "</span> <span class="o">+</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isNumeric</span><span class="o">(</span><span class="n">str6</span><span class="o">));</span>
+
+        <span class="c1">// reverse strings / whole words</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"=============================="</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"str6: "</span> <span class="o">+</span> <span class="n">str6</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"str6reversed: "</span> <span class="o">+</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">reverse</span><span class="o">(</span><span class="n">str6</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"str7: "</span> <span class="o">+</span> <span class="n">str7</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">str8</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">chomp</span><span class="o">(</span><span class="n">str7</span><span class="o">);</span>
+
+        <span class="n">str8</span> <span class="o">=</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">reverseDelimited</span><span class="o">(</span><span class="n">str8</span><span class="o">,</span> <span class="sc">' '</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"str7 reversed whole words : \r\n"</span> <span class="o">+</span> <span class="n">str8</span><span class="o">);</span>
+
+        <span class="c1">// build header (useful to print logmessages that are easy to locate)</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"=============================="</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"print header:"</span> <span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">padding</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">repeat</span><span class="o">(</span> <span class="s">"="</span> <span class="o">,</span> <span class="mi">50</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">center</span><span class="o">(</span> <span class="s">" Customised Header "</span> <span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="s">"%"</span> <span class="o">);</span>
+
+        <span class="n">Object</span><span class="o">[]</span> <span class="n">raw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">padding</span><span class="o">,</span> <span class="n">msg</span><span class="o">,</span><span class="n">padding</span><span class="o">};</span>
+
+        <span class="n">String</span> <span class="n">header</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="n">raw</span><span class="o">,</span> <span class="s">"\r\n"</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">header</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>输出的结果如下：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>==============================
+
+Is str1 blank? true
+
+Is str2 blank? true
+
+Is str3 blank? true
+
+Is str4 blank? true
+
+==============================
+
+Is str5 numeric?true
+
+Is str6 numeric?false
+
+==============================
+
+str6: ABCDEFG
+
+str6 reversed:GFEDCBA
+
+str7: It feels goodto use Jakarta Commons.
+
+str7 reversed wholewords :
+
+Commons. Jakarta use to good feelsIt
+
+==============================
+
+print header:
+
+==================================================
+
+%%%%%%%%%%%%%%%Customised Header %%%%%%%%%%%%%%%%
+
+==================================================
+</code></pre>
+</div>
+<p>从代码中我们可以大致了解到这个StringUtils类简单而强大的处理能力，从检查空串（对null的情况处理很得体），到分割子串，到生成格式化的字符串，使用都很简洁，也很直截了当。</p>
+
+<h3 id="orgapachecommonslangbuilder">org.apache.commons.lang.builder</h3>
+<p>在前面的专题文章中，我们一起过了一遍org.apache.commons.lang包，接下来我们继续看org.apache.commons.lang.builder这个包。在这里面我们可以找到7个类，用于帮助我们实现Java对象的一些基础的共有方法。这7个类分别是：</p>
+<blockquote>
+  <ul>
+    <li>CompareToBuilder – 用于辅助实现 Comparable.compareTo(Object) 方法；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>EqualsBuilder – 用于辅助实现 Object.equals() 方法；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>HashCodeBuilder – 用于辅助实现 Object.hashCode() 方法；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>ToStringBuilder – 用于辅助实现 Object.toString() 方法；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>ReflectionToStringBuilder – 使用反射机制辅助实现 Object.toString() 方法；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>ToStringStyle – 辅助 ToStringBuilder 控制输出格式；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>StandardToStringStyle – 辅助 ToStringBuilder 控制标准格式。</li>
+  </ul>
+</blockquote>
+
+<p>我们知道，在实际应用中，其实经常需要在运行过程中判定对象的知否相等、比较、取hash、和获取对象基本信息（一般是产生log日志）。然而实现这些compareTo、equals、hashCode、toString其实并非那么直截了当，甚至稍有不注意就可能造成难以追踪的bug，而且这些方法手工维护的话，比较繁琐，也容易出错。于是Commons Lang在builder这个包中提供了上述辅助类，为我们简化这些方法的实现和维护。</p>
+
+<p>来看一个例子：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">sean</span><span class="o">.</span><span class="na">study</span><span class="o">.</span><span class="na">jakarta</span><span class="o">.</span><span class="na">commons</span><span class="o">.</span><span class="na">lang</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.builder.CompareToBuilder</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.builder.EqualsBuilder</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.builder.HashCodeBuilder</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.builder.ToStringBuilder</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.builder.ToStringStyle</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BuilderUsage</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">Staff</span> <span class="n">staff1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Staff</span><span class="o">(</span><span class="mi">123</span><span class="o">,</span> <span class="s">"John Smith"</span> <span class="o">,</span> <span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+
+        <span class="n">Staff</span> <span class="n">staff2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Staff</span><span class="o">(</span><span class="mi">456</span><span class="o">,</span> <span class="s">"Jane Smith"</span> <span class="o">,</span> <span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"staff1's info: "</span> <span class="o">+</span> <span class="n">staff1</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"staff2's info: "</span> <span class="o">+</span> <span class="n">staff2</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"staff1's hash code: "</span> <span class="o">+</span><span class="n">staff1</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"staff2's hash code: "</span> <span class="o">+</span><span class="n">staff2</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"staff1 equals staff2? "</span> <span class="o">+</span><span class="n">staff1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">staff2</span><span class="o">));</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Staff</span> <span class="kd">implements</span> <span class="n">Comparable</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">long</span> <span class="n">staffId</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">staffName</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">Date</span> <span class="n">dateJoined</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Staff</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Staff</span><span class="o">(</span> <span class="kt">long</span> <span class="n">staffId</span><span class="o">,</span> <span class="n">String</span> <span class="n">staffName</span><span class="o">,</span> <span class="n">Date</span> <span class="n">dateJoined</span><span class="o">){</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="na">staffId</span> <span class="o">=</span> <span class="n">staffId</span><span class="o">;</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="na">staffName</span> <span class="o">=</span> <span class="n">staffName</span><span class="o">;</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="na">dateJoined</span> <span class="o">=</span> <span class="n">dateJoined</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span><span class="n">Staff</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">isAssignableFrom</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">getClass</span><span class="o">()))</span> <span class="o">{</span>
+
+            <span class="n">Staff</span> <span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="n">Staff</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+
+            <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CompareToBuilder</span><span class="o">()</span>
+
+                    <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">dateJoined</span><span class="o">,</span><span class="n">s</span><span class="o">.</span><span class="na">getDateJoined</span><span class="o">())</span>
+
+                    <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">staffName</span><span class="o">,</span><span class="n">s</span><span class="o">.</span><span class="na">getStaffName</span><span class="o">()).</span><span class="na">toComparison</span><span class="o">();</span>
+
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="kt">boolean</span> <span class="n">res</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span><span class="n">Staff</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">isAssignableFrom</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">getClass</span><span class="o">()))</span> <span class="o">{</span>
+
+            <span class="n">Staff</span> <span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="n">Staff</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+
+            <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EqualsBuilder</span><span class="o">()</span>
+
+                    <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">staffId</span><span class="o">,</span><span class="n">s</span><span class="o">.</span><span class="na">getStaffId</span><span class="o">())</span>
+
+                    <span class="o">.</span><span class="na">isEquals</span><span class="o">();</span>
+
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">HashCodeBuilder</span><span class="o">(</span><span class="mi">11</span><span class="o">,</span><span class="mi">23</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">staffId</span><span class="o">).</span><span class="na">toHashCode</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">ToStringBuilder</span><span class="o">(</span> <span class="k">this</span> <span class="o">,</span><span class="n">ToStringStyle</span><span class="o">.</span><span class="na">MULTI_LINE_STYLE</span><span class="o">)</span>
+
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span> <span class="s">"staffId"</span> <span class="o">,</span><span class="n">staffId</span><span class="o">)</span>
+
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span> <span class="s">"staffName"</span> <span class="o">,</span><span class="n">staffName</span><span class="o">)</span>
+
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span> <span class="s">"dateJoined"</span> <span class="o">,</span><span class="n">dateJoined</span><span class="o">)</span>
+
+                <span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Date</span> <span class="nf">getDateJoined</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="n">dateJoined</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDateJoined</span><span class="o">(</span><span class="n">Date</span> <span class="n">dateJoined</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">this</span> <span class="o">.</span><span class="na">dateJoined</span> <span class="o">=</span> <span class="n">dateJoined</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">getStaffId</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="n">staffId</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setStaffId</span><span class="o">(</span><span class="kt">long</span> <span class="n">staffId</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">this</span> <span class="o">.</span><span class="na">staffId</span> <span class="o">=</span> <span class="n">staffId</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getStaffName</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="n">staffName</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setStaffName</span><span class="o">(</span><span class="n">String</span> <span class="n">staffName</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">this</span> <span class="o">.</span><span class="na">staffName</span> <span class="o">=</span> <span class="n">staffName</span><span class="o">;</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>以下是运行结果：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>staff1's info:sean.study.jakarta.commons.lang.Staff@190d11[
+
+  staffId=123
+
+  staffName=John Smith
+
+  dateJoined=Sat Jul 30 13:18:45 CST 2005
+
+]
+
+staff2's info:sean.study.jakarta.commons.lang.Staff@1fb8ee3[
+
+  staffId=456
+
+  staffName=Jane Smith
+
+  dateJoined=Sat Jul 30 13:18:45 CST 2005
+
+]
+
+staff1's hash code:376
+
+staff2's hash code:709
+
+staff1 equals staff2? false
+</code></pre>
+</div>
+<p>这些builder使用起来都很简单，new一个实例，append需要参与的信息，最后加上toComparison、isEquals、toHashCode、toString这样的结尾即可。相应的，如果你不需要这样级别的控制，也可以使用利用反射机制的版本自动化实现需要的功能，如：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="n">CompareToBuilder</span><span class="o">.</span><span class="na">reflectionCompare</span><span class="o">(</span> <span class="k">this</span> <span class="o">,</span> <span class="n">o</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="n">EqualsBuilder</span><span class="o">.</span><span class="na">reflectionEquals</span><span class="o">(</span> <span class="k">this</span> <span class="o">,</span> <span class="n">o</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="n">HashCodeBuilder</span><span class="o">.</span><span class="na">reflectionHashCode</span><span class="o">(</span> <span class="k">this</span> <span class="o">);</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="k">return</span> <span class="n">ReflectionToStringBuilder</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span> <span class="k">this</span> <span class="o">);</span>
+
+    <span class="o">}</span>
+</code></pre>
+</div>
+<p>尤其当我们在项目中不希望过多的参与到对这些对象方法的维护时，采用Commons提供的利用反射的这些API就成了方便而相对安全的一个方案。</p>
+
+<h3 id="orgapachecommonslangmath">org.apache.commons.lang.math</h3>
+<p>在Jakarta Commons中，专门处理数学计算的类分别可以在两个地方找到：一是Commons Lang的org.apache.commons.lang.math包中，二是在Commons Math这个单独的子项目中。由于后者主要是处理复数、矩阵等，相对使用比较少，在我的笔记中就只简单讲讲Commons Lang中的math包。对后者感兴趣的可以看看</p>
+
+<p><a href="http://jakarta.apache.org/commons/math/">http://jakarta.apache.org/commons/math/</a></p>
+
+<p>org.apache.commons.lang.math包中共有10个类，这些类可以归纳成四组：</p>
+<blockquote>
+  <ul>
+    <li>1- 处理分数的 Fraction 类；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>2- 处理数值的 NumberUtils 类；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>3- 处理数值范围的 Range 、 NumberRange 、 IntRange 、 LongRange 、 FloatRange 、 DoubleRange 类；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>4- 处理随机数的 JVMRandom 和 RandomUtils 类。
+下面我举个例子分别说明上述四组的使用方法：</li>
+  </ul>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">sean</span><span class="o">.</span><span class="na">study</span><span class="o">.</span><span class="na">jakarta</span><span class="o">.</span><span class="na">commons</span><span class="o">.</span><span class="na">lang</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.ArrayUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.BooleanUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.StringUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.math.DoubleRange</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.math.Fraction</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.math.NumberUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.math.RandomUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.math.Range</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LangMathUsage</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">demoFraction</span><span class="o">();</span>
+
+        <span class="n">demoNumberUtils</span><span class="o">();</span>
+
+        <span class="n">demoNumberRange</span><span class="o">();</span>
+
+        <span class="n">demoRandomUtils</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">demoFraction</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">center</span><span class="o">(</span> <span class="s">" demoFraction "</span> <span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="s">"="</span> <span class="o">));</span>
+
+        <span class="n">Fraction</span> <span class="n">myFraction</span> <span class="o">=</span> <span class="n">Fraction</span><span class="o">.</span><span class="na">getFraction</span><span class="o">(</span><span class="mi">144</span><span class="o">,</span><span class="mi">90</span><span class="o">);</span>
+
+        <span class="c1">// FractionmyFraction = Fraction.getFraction("1 54/90");</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"144/90 as fraction: "</span> <span class="o">+</span> <span class="n">myFraction</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"144/90 to proper: "</span> <span class="o">+</span><span class="n">myFraction</span><span class="o">.</span><span class="na">toProperString</span><span class="o">());</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"144/90 as double: "</span> <span class="o">+</span><span class="n">myFraction</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">());</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"144/90 reduced: "</span> <span class="o">+</span> <span class="n">myFraction</span><span class="o">.</span><span class="na">reduce</span><span class="o">());</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"144/90 reduced proper: "</span>
+
+                <span class="o">+</span><span class="n">myFraction</span><span class="o">.</span><span class="na">reduce</span><span class="o">().</span><span class="na">toProperString</span><span class="o">());</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">demoNumberUtils</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">center</span><span class="o">(</span> <span class="s">" demoNumberUtils "</span> <span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="s">"="</span> <span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is 0x3Fa number? "</span>
+
+                <span class="o">+</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">capitalize</span><span class="o">(</span><span class="n">BooleanUtils</span><span class="o">.</span><span class="na">toStringYesNo</span><span class="o">(</span><span class="n">NumberUtils</span>
+
+                        <span class="o">.</span><span class="na">isNumber</span><span class="o">(</span> <span class="s">"0x3F"</span> <span class="o">)))+</span> <span class="s">"."</span> <span class="o">);</span>
+
+        <span class="kt">double</span> <span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="o">{</span> <span class="mf">1.0</span><span class="o">,</span> <span class="mf">3.4</span><span class="o">,</span> <span class="mf">0.8</span><span class="o">,</span> <span class="mf">7.1</span><span class="o">,</span> <span class="mf">4.6</span> <span class="o">};</span>
+
+        <span class="kt">double</span> <span class="n">max</span> <span class="o">=</span> <span class="n">NumberUtils</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>
+
+        <span class="kt">double</span> <span class="n">min</span> <span class="o">=</span> <span class="n">NumberUtils</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">arrayStr</span> <span class="o">=</span><span class="n">ArrayUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Max of "</span> <span class="o">+</span> <span class="n">arrayStr</span> <span class="o">+</span> <span class="s">" is: "</span> <span class="o">+</span> <span class="n">max</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Min of "</span> <span class="o">+</span> <span class="n">arrayStr</span> <span class="o">+</span> <span class="s">" is: "</span> <span class="o">+</span> <span class="n">min</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">demoNumberRange</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">center</span><span class="o">(</span> <span class="s">" demoNumberRange "</span> <span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="s">"="</span> <span class="o">));</span>
+
+        <span class="n">Range</span> <span class="n">normalScoreRange</span> <span class="o">=</span> <span class="n">newDoubleRange</span><span class="o">(</span><span class="mi">90</span><span class="o">,</span> <span class="mi">120</span><span class="o">);</span>
+
+        <span class="kt">double</span> <span class="n">score1</span> <span class="o">=</span> <span class="mf">102.5</span><span class="o">;</span>
+
+        <span class="kt">double</span> <span class="n">score2</span> <span class="o">=</span> <span class="mf">79.9</span><span class="o">;</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Normal score rangeis: "</span> <span class="o">+</span> <span class="n">normalScoreRange</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is "</span>
+
+                <span class="o">+</span> <span class="n">score1</span>
+
+                <span class="o">+</span> <span class="s">"a normal score? "</span>
+
+                <span class="o">+</span> <span class="n">StringUtils</span>
+
+                        <span class="o">.</span><span class="na">capitalize</span><span class="o">(</span><span class="n">BooleanUtils</span><span class="o">.</span><span class="na">toStringYesNo</span><span class="o">(</span><span class="n">normalScoreRange</span>
+
+                                <span class="o">.</span><span class="na">containsDouble</span><span class="o">(</span><span class="n">score1</span><span class="o">)))+</span> <span class="s">"."</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Is "</span>
+
+                <span class="o">+</span> <span class="n">score2</span>
+
+                <span class="o">+</span> <span class="s">"a normal score? "</span>
+
+                <span class="o">+</span> <span class="n">StringUtils</span>
+
+                        <span class="o">.</span><span class="na">capitalize</span><span class="o">(</span><span class="n">BooleanUtils</span><span class="o">.</span><span class="na">toStringYesNo</span><span class="o">(</span><span class="n">normalScoreRange</span>
+
+                                <span class="o">.</span><span class="na">containsDouble</span><span class="o">(</span><span class="n">score2</span><span class="o">)))+</span> <span class="s">"."</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">demoRandomUtils</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">center</span><span class="o">(</span> <span class="s">" demoRandomUtils "</span> <span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="s">"="</span> <span class="o">));</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">RandomUtils</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">));</span>
+
+        <span class="o">}</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>以下是运行结果：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>========demoFraction ========
+
+144/90 as fraction:144/90
+
+144/90 to proper: 154/90
+
+144/90 as double:1.6
+
+144/90 reduced: 8/5
+
+144/90 reducedproper: 1 3/5
+
+======demoNumberUtils =======
+
+Is 0x3F a number? Yes.
+
+Max of{1.0,3.4,0.8,7.1,4.6} is: 7.1
+
+Min of{1.0,3.4,0.8,7.1,4.6} is: 0.8
+
+======demoNumberRange =======
+
+Normal score rangeis: Range[90.0,120.0]
+
+Is 102.5 a normal score? Yes.
+
+Is 79.9 a normal score? No.
+
+======demoRandomUtils =======
+
+75
+
+63
+
+40
+
+21
+
+92
+</code></pre>
+</div>
+<p>以上就是Commons Lang的math包通常的用法。提一下NumberUtils.inNumber(String)方法，它会正确判断出给定的字符串是否是合法的数值，而我在前面的笔记中提到的StringUtils.isNumeric(String)只能判断一个字符串是否是由纯数字字符组成。Commons Lang的math包的各个类都还有很多实用的方法，远不止我在例子中用到的这些，如果你感兴趣，参照一下Commons Lang的Javadoc吧。</p>
+
+<h3 id="orgapachecommonslangtime">org.apache.commons.lang.time</h3>
+<p>好了，来看我在Common Lang中最后要讲的一个包：org.apache.commons.lang.time。这个包里面包含了如下5个类：</p>
+
+<blockquote>
+  <ul>
+    <li>DateFormatUtils – 提供格式化日期和时间的功能及相关常量；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>DateUtils – 在 Calendar 和 Date 的基础上提供更方便的访问；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>DurationFormatUtils – 提供格式化时间跨度的功能及相关常量；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>FastDateFormat – 为 java.text.SimpleDateFormat 提供一个的线程安全的替代类；</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>StopWatch – 是一个方便的计时器。</li>
+  </ul>
+</blockquote>
+
+<p>我们还是在一个例子中来看上述各个类的用法吧：</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">sean</span><span class="o">.</span><span class="na">study</span><span class="o">.</span><span class="na">jakarta</span><span class="o">.</span><span class="na">commons</span><span class="o">.</span><span class="na">lang</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Calendar</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.StringUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.time.DateFormatUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.time.DateUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.time.FastDateFormat</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.time.StopWatch</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DateTimeUsage</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">demoDateUtils</span><span class="o">();</span>
+
+        <span class="n">demoStopWatch</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">demoDateUtils</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">center</span><span class="o">(</span> <span class="s">" demoDateUtils "</span> <span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="s">"="</span> <span class="o">));</span>
+
+        <span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+
+        <span class="n">String</span> <span class="n">isoDateTime</span> <span class="o">=</span><span class="n">DateFormatUtils</span><span class="o">.</span><span class="na">ISO_DATETIME_FORMAT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">isoTime</span> <span class="o">=</span><span class="n">DateFormatUtils</span><span class="o">.</span><span class="na">ISO_TIME_NO_T_FORMAT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+
+        <span class="n">FastDateFormat</span> <span class="n">fdf</span> <span class="o">=</span> <span class="n">FastDateFormat</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span> <span class="s">"yyyy-MM"</span> <span class="o">);</span>
+
+        <span class="n">String</span> <span class="n">customDateTime</span> <span class="o">=</span><span class="n">fdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"ISO_DATETIME_FORMAT: "</span> <span class="o">+</span> <span class="n">isoDateTime</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"ISO_TIME_NO_T_FORMAT: "</span> <span class="o">+</span> <span class="n">isoTime</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Custom FastDateFormat: "</span> <span class="o">+</span><span class="n">customDateTime</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Default format: "</span> <span class="o">+</span> <span class="n">date</span><span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Round HOUR: "</span> <span class="o">+</span> <span class="n">DateUtils</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">date</span><span class="o">,</span><span class="n">Calendar</span><span class="o">.</span><span class="na">HOUR</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"Truncate HOUR: "</span> <span class="o">+</span><span class="n">DateUtils</span><span class="o">.</span><span class="na">truncate</span><span class="o">(</span><span class="n">date</span><span class="o">,</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">HOUR</span><span class="o">));</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">demoStopWatch</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">center</span><span class="o">(</span> <span class="s">" demoStopWatch "</span> <span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="s">"="</span> <span class="o">));</span>
+
+        <span class="n">StopWatch</span> <span class="n">sw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StopWatch</span><span class="o">();</span>
+
+        <span class="n">sw</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+        <span class="n">operationA</span><span class="o">();</span>
+
+        <span class="n">sw</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">"operationA used "</span> <span class="o">+</span> <span class="n">sw</span><span class="o">.</span><span class="na">getTime</span><span class="o">()</span> <span class="o">+</span> <span class="s">" milliseconds."</span> <span class="o">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">operationA</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">999</span><span class="o">);</span>
+
+        <span class="o">}</span>
+
+        <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="c1">// do nothing</span>
+
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>以下是运行结果：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>=======demoDateUtils ========
+
+ISO_DATETIME_FORMAT:2005-08-01T12:41:51
+
+ISO_TIME_NO_T_FORMAT:12:41:51
+
+CustomFastDateFormat: 2005-08
+
+Default format: MonAug 01 12:41:51 CST 2005
+
+Round HOUR: Mon Aug01 13:00:00 CST 2005
+
+Truncate HOUR: MonAug 01 12:00:00 CST 2005
+
+=======demoStopWatch ========
+
+operationA used 1000milliseconds.
+</code></pre>
+</div>
+<p>具体的调用细节和完整的API请参阅Commons Lang的Javadoc。</p>
